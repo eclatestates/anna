@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anna — Facial Serum for Nigerian Skin</title>
+  <meta name="description" content="Anna Facial Serum. Built for dark Nigerian skin. Fades dark spots, fights acne, hydrates all day." />
+  <meta property="og:title" content="Anna — Facial Serum" />
+  <meta property="og:description" content="Dark spots, acne, dryness. Three problems. One serum. Built for Nigerian skin." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --green: #2D5A35;
+      --green-l: #4A7C54;
+      --green-pale: #E8F0E9;
+      --green-mist: #F2F6F2;
+      --sage: #8FAF8F;
+      --cream: #FAF8F3;
+      --bg: #F7F5F0;
+      --bg-dark: #1C2B1E;
+      --text: #1A1F1A;
+      --text-dim: #4A5040;
+      --muted: #7A8070;
+      --border: rgba(45,90,53,0.12);
+      --white: #FFFFFF;
+      --ease: cubic-bezier(0.4,0,0.2,1);
+      --nav-h: 72px;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: rgba(45,90,53,0.15); }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── TYPE ── */
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 600; line-height: 1.06; color: var(--white);
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 600; line-height: 1.15; color: var(--text);
+    }
+    h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-weight: 600; line-height: 1.3;
+    }
+    .eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem; font-weight: 400;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--green);
+    }
+
+    /* ── LAYOUT ── */
+    .container { width: min(100%, 1120px); margin-inline: auto; padding-inline: clamp(1.5rem, 5vw, 3rem); }
+    .section { padding-block: clamp(5rem, 10vw, 8rem); }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(25px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── DIVIDER ── */
+    .divider { display: flex; align-items: center; gap: 14px; margin-bottom: 1.5rem; }
+    .divider--center { justify-content: center; }
+    .divider__line { width: 36px; height: 1px; background: var(--green); opacity: 0.3; }
+
+    /* ── BUTTON ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 0.95em 2.4em; border-radius: 100px;
+      font-family: 'Cinzel', serif; font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      cursor: pointer; border: none;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s, background 0.3s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--green); color: #fff; box-shadow: 0 4px 20px rgba(45,90,53,0.25); }
+    .btn-primary:hover { background: var(--green-l); box-shadow: 0 8px 32px rgba(45,90,53,0.35); }
+    .btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.4) !important; }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7) !important; }
+    .btn-outline-dark { background: transparent; color: var(--green); border: 1.5px solid var(--green) !important; }
+    .btn-outline-dark:hover { background: var(--green-pale); }
+    .btn-white { background: #fff; color: var(--green); box-shadow: 0 4px 18px rgba(0,0,0,0.1); }
+    .btn-white:hover { background: var(--cream); box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+    .btn-lg { padding: 1.1em 3em; font-size: 0.68rem; }
+    .btn-arrow { transition: transform 0.3s var(--ease); }
+    .btn:hover .btn-arrow { transform: translateX(3px); }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: var(--nav-h);
+      background: transparent;
+      transition: background 0.4s, box-shadow 0.4s, backdrop-filter 0.4s;
+    }
+    .nav.scrolled {
+      background: rgba(247,245,240,0.95);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+    }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+    .nav__logo {
+      font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 600;
+      letter-spacing: 0.25em; color: var(--white);
+      transition: color 0.4s;
+    }
+    .nav__logo span { color: var(--sage); }
+    .nav.scrolled .nav__logo { color: var(--text); }
+    .nav.scrolled .nav__logo span { color: var(--green); }
+
+    .nav__links { display: flex; align-items: center; gap: 2.5rem; }
+    .nav__links a {
+      font-size: 0.82rem; font-weight: 400; color: rgba(255,255,255,0.75);
+      letter-spacing: 0.04em; position: relative; transition: color 0.3s;
+    }
+    .nav.scrolled .nav__links a { color: var(--text-dim); }
+    .nav__links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0; width: 0;
+      height: 1px; background: currentColor; transition: width 0.3s var(--ease);
+    }
+    .nav__links a:hover { color: var(--white); }
+    .nav.scrolled .nav__links a:hover { color: var(--green); }
+    .nav__links a:hover::after { width: 100%; }
+
+    .nav__cta-link { transition: opacity 0.4s; }
+    .nav .nav__cta-link { opacity: 0; pointer-events: none; }
+    .nav.scrolled .nav__cta-link { opacity: 1; pointer-events: auto; }
+
+    .nav__ham {
+      display: none; flex-direction: column; align-items: center; justify-content: center;
+      width: 40px; height: 40px; gap: 5px; cursor: pointer; background: none; border: none;
+    }
+    .nav__ham span {
+      display: block; width: 20px; height: 1.5px; background: var(--white);
+      transition: all 0.3s var(--ease); transform-origin: center;
+    }
+    .nav.scrolled .nav__ham span { background: var(--text); }
+    .nav__ham.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav__ham.open span:nth-child(2) { opacity: 0; }
+    .nav__ham.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav__mobile {
+      position: fixed; top: var(--nav-h); left: 0; right: 0;
+      background: rgba(247,245,240,0.99); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border); padding: 1.5rem;
+      display: flex; flex-direction: column; gap: 0.25rem;
+      transform: translateY(-110%); opacity: 0;
+      transition: transform 0.35s var(--ease), opacity 0.35s; z-index: 999;
+    }
+    .nav__mobile.open { transform: translateY(0); opacity: 1; }
+    .nav__mobile a {
+      display: block; padding: 0.85rem 1rem; font-size: 1.05rem;
+      font-family: 'Cormorant Garamond', serif; font-weight: 600;
+      color: var(--text-dim); border-radius: 8px; transition: color 0.3s, background 0.3s;
+    }
+    .nav__mobile a:hover { color: var(--green); background: var(--green-mist); }
+    .nav__mobile .btn { margin-top: 0.75rem; width: 100%; }
+
+    @media (max-width: 768px) {
+      .nav__links, .nav__cta-link { display: none; }
+      .nav__ham { display: flex; }
+    }
+
+    /* ══════════════════════════════════════
+       HERO — FULL BLEED IMAGE
+       ══════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero__bg img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.1) 0%,
+        rgba(0,0,0,0.02) 35%,
+        rgba(0,0,0,0.55) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero__content {
+      position: relative; z-index: 2;
+      width: 100%;
+      padding: 0 clamp(1.5rem, 5vw, 3rem) clamp(3rem, 8vw, 5rem);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+
+    .hero__text { max-width: 600px; }
+
+    .hero__badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px; padding: 0.4em 1.1em;
+      margin-bottom: 1.75rem;
+    }
+    .hero__badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); }
+    .hero__badge .eyebrow { color: rgba(255,255,255,0.8); font-size: 0.58rem; }
+
+    .hero__title { margin-bottom: 1.25rem; }
+    .hero__title em { font-style: italic; color: var(--sage); }
+
+    .hero__sub {
+      font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+      font-weight: 300; color: rgba(255,255,255,0.7);
+      line-height: 1.8; max-width: 460px;
+      margin-bottom: 2.25rem;
+    }
+
+    .hero__actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+    .hero__meta {
+      text-align: right;
+      color: var(--white);
+    }
+    .hero__price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 400;
+    }
+    .hero__price-note {
+      font-size: 0.7rem; color: rgba(255,255,255,0.5);
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .hero__content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+      .hero__meta { text-align: left; }
+    }
+
+    /* ── SOCIAL PROOF BAR ── */
+    .proof-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 0;
+    }
+    .proof-bar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(2rem, 5vw, 4rem);
+      flex-wrap: wrap;
+    }
+    .proof-stat {
+      text-align: center;
+    }
+    .proof-stat__num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 600; color: var(--green);
+      line-height: 1;
+    }
+    .proof-stat__label {
+      font-size: 0.7rem; color: var(--muted);
+      letter-spacing: 0.04em; margin-top: 0.25rem;
+    }
+    .proof-stat__divider {
+      width: 1px; height: 32px;
+      background: var(--border);
+    }
+
+    @media (max-width: 480px) {
+      .proof-stat__divider { display: none; }
+      .proof-bar__inner { gap: 1.5rem; }
+    }
+
+    /* ── PROBLEM ── */
+    .problem {
+      background: var(--white);
+    }
+    .problem__inner { max-width: 680px; margin-inline: auto; text-align: center; }
+    .problem__text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 3vw, 1.85rem);
+      font-weight: 400; font-style: italic;
+      line-height: 1.75; color: var(--text-dim);
+    }
+    .problem__text strong { color: var(--green); font-style: normal; font-weight: 600; }
+
+    /* ── ABOUT — SPLIT IMAGE + TEXT ── */
+    .about {
+      background: var(--cream);
+    }
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: stretch;
+    }
+    .about__img-wrap {
+      position: relative;
+      overflow: hidden;
+      min-height: 500px;
+    }
+    .about__img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .about__text-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(2.5rem, 6vw, 5rem);
+      gap: 1.25rem;
+    }
+    .about__text-wrap .body-lg {
+      font-size: clamp(0.92rem, 1.5vw, 1.05rem);
+      font-weight: 300; line-height: 1.85; color: var(--text-dim);
+    }
+    .about__text-wrap .body-sm {
+      font-size: 0.88rem; font-weight: 400;
+      line-height: 1.78; color: var(--muted);
+    }
+
+    @media (max-width: 768px) {
+      .about__grid { grid-template-columns: 1fr; }
+      .about__img-wrap { min-height: 300px; }
+    }
+
+    /* ── BENEFITS — WITH BACKGROUND IMAGE ── */
+    .benefits {
+      position: relative;
+      background: var(--bg-dark);
+      overflow: hidden;
+    }
+    .benefits__bg {
+      position: absolute; inset: 0;
+      z-index: 0;
+    }
+    .benefits__bg img {
+      width: 100%; height: 100%;
+      object-fit: cover; opacity: 0.15;
+    }
+    .benefits__inner {
+      position: relative; z-index: 1;
+    }
+    .benefits .eyebrow { color: var(--sage); }
+    .benefits h2 { color: var(--white); }
+    .benefits__sub {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.88rem; font-weight: 300; line-height: 1.75;
+      max-width: 420px; margin: 0.75rem auto 0;
+    }
+
+    .benefits__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1rem, 2vw, 1.5rem);
+      margin-top: clamp(3rem, 6vw, 4.5rem);
+    }
+    .benefit-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: clamp(1.75rem, 3.5vw, 2.5rem);
+      display: flex; flex-direction: column; gap: 1rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .benefit-card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .benefit-card__num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; font-weight: 300;
+      color: rgba(255,255,255,0.1); line-height: 1;
+    }
+    .benefit-card h3 { color: var(--white); }
+    .benefit-card p {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.88rem; line-height: 1.75; font-weight: 300;
+    }
+
+    @media (max-width: 768px) { .benefits__grid { grid-template-columns: 1fr; } }
+    @media (min-width: 481px) and (max-width: 768px) { .benefits__grid { grid-template-columns: 1fr 1fr; } }
+
+    /* ── INGREDIENTS — CLEAN LIGHT ── */
+    .ingredients { background: var(--white); }
+    .ingredients__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: clamp(1rem, 2vw, 1.25rem);
+      margin-top: clamp(3rem, 6vw, 4.5rem);
+    }
+    .ingredient {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: clamp(1.5rem, 3vw, 2rem);
+      display: flex; flex-direction: column; gap: 0.65rem;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s;
+    }
+    .ingredient:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(45,90,53,0.08);
+    }
+    .ingredient__img {
+      width: 100%; height: 140px;
+      border-radius: 10px; overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+    .ingredient__img img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .ingredient__name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 600; color: var(--text);
+    }
+    .ingredient__tag {
+      font-family: 'Cinzel', serif; font-size: 0.55rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--green);
+    }
+    .ingredient__desc {
+      font-size: 0.85rem; color: var(--muted);
+      line-height: 1.7; font-weight: 300;
+    }
+
+    /* ── FULL-WIDTH IMAGE BREAK ── */
+    .image-break {
+      position: relative;
+      height: clamp(300px, 50vw, 500px);
+      overflow: hidden;
+    }
+    .image-break img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .image-break__overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.3);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .image-break__text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3.5vw, 2.5rem);
+      font-weight: 400; font-style: italic;
+      color: var(--white); text-align: center;
+      max-width: 500px; line-height: 1.5;
+      padding: 0 2rem;
+    }
+    .image-break__text strong {
+      font-style: normal; font-weight: 600;
+    }
+
+    /* ── FAQ ── */
+    .faq { background: var(--cream); }
+    .faq__inner { max-width: 720px; margin-inline: auto; }
+    .obj-item { border-bottom: 1px solid var(--border); }
+    .obj-item:first-of-type { border-top: 1px solid var(--border); }
+    .obj-btn {
+      width: 100%; display: flex; align-items: center;
+      justify-content: space-between; padding: 1.5rem 0;
+      cursor: pointer; gap: 1.5rem; background: none; border: none; text-align: left;
+    }
+    .obj-q {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      font-weight: 600; color: var(--text); flex: 1;
+      transition: color 0.3s;
+    }
+    .obj-btn:hover .obj-q { color: var(--green); }
+    .obj-icon {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--green); font-size: 0.95rem; font-weight: 300;
+      transition: transform 0.3s var(--ease), background 0.3s;
+    }
+    .obj-item.open .obj-icon { transform: rotate(45deg); background: var(--green-pale); }
+    .obj-body { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease); }
+    .obj-item.open .obj-body { max-height: 200px; }
+    .obj-body p { color: var(--muted); line-height: 1.8; font-weight: 300; padding-bottom: 1.5rem; font-size: 0.9rem; }
+
+    /* ── CTA — WITH BACKGROUND IMAGE ── */
+    .cta-section {
+      position: relative;
+      padding-block: clamp(6rem, 12vw, 9rem);
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta-section__bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .cta-section__bg img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .cta-section__bg-overlay {
+      position: absolute; inset: 0;
+      background: rgba(28,43,30,0.85);
+    }
+    .cta-section__inner {
+      position: relative; z-index: 1;
+      max-width: 620px; margin-inline: auto;
+    }
+    .cta-section .eyebrow { color: var(--sage); }
+    .cta-section h2 { color: var(--white); margin-bottom: 1rem; }
+    .cta-section__sub {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.95rem; font-weight: 300; line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+    .cta-section__actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+    /* ── FOOTER ── */
+    .footer { background: #141E15; padding-block: 1.75rem; }
+    .footer__inner {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      align-items: center; justify-content: space-between;
+    }
+    .footer__logo {
+      font-family: 'Cinzel', serif; font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.25em; color: rgba(255,255,255,0.6);
+    }
+    .footer__logo span { color: var(--sage); }
+    .footer__copy { font-size: 0.7rem; color: rgba(255,255,255,0.2); }
+    .footer__links { display: flex; gap: 1.5rem; }
+    .footer__links a { font-size: 0.7rem; color: rgba(255,255,255,0.2); transition: color 0.3s; }
+    .footer__links a:hover { color: rgba(255,255,255,0.5); }
+
+    @media (max-width: 580px) {
+      .footer__inner { flex-direction: column; text-align: center; }
+      .footer__links { justify-content: center; }
+    }
+
+    /* ── SCROLL TOP ── */
+    .scroll-top {
+      position: fixed; bottom: 2rem; right: 2rem;
+      width: 42px; height: 42px;
+      background: var(--green); color: #fff;
+      border-radius: 50%; border: none;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(45,90,53,0.35);
+      cursor: pointer; opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s; z-index: 900;
+    }
+    .scroll-top.visible { opacity: 1; pointer-events: auto; }
+    .scroll-top:hover { transform: translateY(-3px); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <div class="nav__logo">ANNA<span>.</span></div>
+      <nav>
+        <ul class="nav__links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#ingredients">Ingredients</a></li>
+        </ul>
+      </nav>
+      <a href="#order" class="btn btn-primary nav__cta-link">Order Now</a>
+      <button class="nav__ham" id="ham" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="nav__mobile" id="mobMenu">
+    <a href="#about" class="mob-link">About</a>
+    <a href="#benefits" class="mob-link">Benefits</a>
+    <a href="#ingredients" class="mob-link">Ingredients</a>
+    <a href="#order" class="btn btn-primary mob-link">Order Now</a>
+  </nav>
+
+  <main>
+
+    <!-- ════════════ HERO ════════════ -->
+    <section class="hero">
+      <div class="hero__bg">
+        <!-- REPLACE with your actual hero photo -->
+        <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=1920&q=80" alt="Woman with beautiful glowing skin" />
+      </div>
+      <div class="hero__overlay"></div>
+
+      <div class="hero__content">
+        <div class="hero__text">
+          <div class=>
+           
+          
+          </div>
+
+          <h1 class="hero__title">
+            Your Skin Has<br/>
+            Been Waiting<br/>
+            for <em>This.</em>
+          </h1>
+
+          <p class="hero__sub">
+            Dark spots, acne and dryness. Three problems Nigerian women deal with daily. Anna was built to fix all three.
+          </p>
+
+          <div class="hero__actions">
+            <a href="#order" class="btn btn-primary btn-lg">
+              Get Anna Now
+              <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="#benefits" class="btn btn-outline btn-lg">See How It Works</a>
+          </div>
+        </div>
+
+        <div class="hero__meta">
+          <div class="hero__price">₦15,000</div>
+          <div class="hero__price-note">30ml · Free Delivery</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ SOCIAL PROOF ════════════ -->
+    <div class="proof-bar">
+      <div class="container proof-bar__inner">
+        <div class="proof-stat reveal">
+          <div class="proof-stat__num">500+</div>
+          <div class="proof-stat__label">Women using Anna</div>
+        </div>
+        <div class="proof-stat__divider"></div>
+        <div class="proof-stat reveal">
+          <div class="proof-stat__num">4-6 wks</div>
+          <div class="proof-stat__label">Visible spot reduction</div>
+        </div>
+        <div class="proof-stat__divider"></div>
+        <div class="proof-stat reveal">
+          <div class="proof-stat__num">100%</div>
+          <div class="proof-stat__label">Natural ingredients</div>
+        </div>
+        <div class="proof-stat__divider"></div>
+        <div class="proof-stat reveal">
+          <div class="proof-stat__num">24hr</div>
+          <div class="proof-stat__label">Shipping nationwide</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════ PROBLEM ════════════ -->
+    <section class="section problem">
+      <div class="container">
+        <div class="problem__inner">
+          <div class="divider divider--center reveal">
+            <div class="divider__line"></div>
+            <span class="eyebrow">Sound Familiar</span>
+            <div class="divider__line"></div>
+          </div>
+          <p class="problem__text reveal">
+            You have bought product after product.
+            <strong>The dark spots are still there.</strong>
+            The acne keeps coming back. Your skin is tight and dry by midday.
+            You are not asking for a miracle.
+            <strong>You just want something that actually works.</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ ABOUT — SPLIT LAYOUT ════════════ -->
+    <section class="about" id="about">
+      <div class="about__grid">
+        <div class="about__img-wrap reveal">
+          <!-- REPLACE with actual product/lifestyle photo -->
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80" alt="Anna serum bottle with botanicals" />
+        </div>
+        <div class="about__text-wrap reveal">
+          <div class="divider">
+            <div class="divider__line"></div>
+            <span class="eyebrow">Introducing Anna</span>
+          </div>
+          <h2>Made for Skin<br/><em style="color:var(--green);font-style:italic;">Like Yours</em></h2>
+          <p class="body-lg">
+            Most skincare is formulated for skin types that are nothing like yours. Anna was built differently. Every ingredient was chosen with dark Nigerian skin in mind.
+          </p>
+          <p class="body-sm">
+            The dark spots that linger for months. The acne that keeps returning. The dryness that no moisturiser seems to fix. Anna addresses all three without stripping your skin or filling it with ingredients it does not need.
+          </p>
+          <a href="#order" class="btn btn-primary" style="align-self:flex-start;margin-top:0.5rem;">
+            Get Anna Now
+            <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ BENEFITS — DARK WITH BG IMAGE ════════════ -->
+    <section class="section benefits" id="benefits">
+      <div class="benefits__bg">
+        <!-- REPLACE with texture/botanical/leaf photo -->
+        <img src="image/face.jpg" alt="" />
+      </div>
+      <div class="container benefits__inner">
+        <div style="text-align:center;" class="reveal">
+          <div class="divider divider--center">
+            <div class="divider__line" style="background:var(--sage);"></div>
+            <span class="eyebrow">What You Get</span>
+            <div class="divider__line" style="background:var(--sage);"></div>
+          </div>
+          <h2>Three Problems.<br/>One Serum.</h2>
+          <p class="benefits__sub">Not a product trying to do everything. One that does three things exceptionally well.</p>
+        </div>
+
+        <div class="benefits__grid">
+          <div class="benefit-card reveal">
+            <div class="benefit-card__num">01</div>
+            <h3>Dark Spots That Fade</h3>
+            <p>Real, visible reduction over consistent use. The kind of difference the people around you notice before you say anything.</p>
+          </div>
+          <div class="benefit-card reveal">
+            <div class="benefit-card__num">02</div>
+            <h3>Acne That Stops Returning</h3>
+            <p>Anna does not just treat the breakout you have now. It works on the conditions that keep creating new ones.</p>
+          </div>
+          <div class="benefit-card reveal">
+            <div class="benefit-card__num">03</div>
+            <h3>Skin That Stays Hydrated</h3>
+            <p>Not greasy, not heavy. Skin that does not feel tight and parched by noon. Hydration that actually absorbs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ FULL-WIDTH IMAGE BREAK ════════════ -->
+    <div class="image-break">
+      <!-- REPLACE with closeup of skin/product/application -->
+      <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=1920&q=80" alt="Skincare routine" />
+      <div class="image-break__overlay">
+        <p class="image-break__text reveal">
+          Your skin does not need another promise. It needs something that <strong>actually works.</strong>
+        </p>
+      </div>
+    </div>
+
+    <!-- ════════════ INGREDIENTS ════════════ -->
+    <section class="section ingredients" id="ingredients">
+      <div class="container">
+        <div style="text-align:center;" class="reveal">
+          <div class="divider divider--center">
+            <div class="divider__line"></div>
+            <span class="eyebrow">What Is Inside</span>
+            <div class="divider__line"></div>
+          </div>
+          <h2>Natural. Deliberate.<br/>Nothing Extra.</h2>
+          <p class="body-sm" style="max-width:440px;margin:0.75rem auto 0;color:var(--muted);">Every ingredient is here for a specific reason.</p>
+        </div>
+
+        <div class="ingredients__grid">
+          <div class="ingredient reveal">
+            <div class="ingredient__img">
+              <!-- REPLACE with rosehip photo -->
+              <img src="image/rosehip.jpg" alt="Rosehip oil" />
+            </div>
+            <div class="ingredient__name">Rosehip Oil</div>
+            <div class="ingredient__tag">Fades Dark Spots</div>
+            <p class="ingredient__desc">Visible reduction in dark spots and old acne marks. Absorbs quickly without feeling oily.</p>
+          </div>
+          <div class="ingredient reveal">
+            <div class="ingredient__img">
+              <!-- REPLACE with honey photo -->
+              <img src="image/honey.jpg" alt="Raw honey" />
+            </div>
+            <div class="ingredient__name">Raw Honey Extract</div>
+            <div class="ingredient__tag">Fights Acne</div>
+            <p class="ingredient__desc">Naturally antibacterial. Fights acne-causing bacteria without drying your skin out.</p>
+          </div>
+          <div class="ingredient reveal">
+            <div class="ingredient__img">
+              <!-- REPLACE with aloe photo -->
+              <img src="image/aloe.jpg" alt="Aloe vera" />
+            </div>
+            <div class="ingredient__name">Aloe Vera</div>
+            <div class="ingredient__tag">Deep Hydration</div>
+            <p class="ingredient__desc">Calms irritated skin and locks in moisture. Works well on skin that reacts to most products.</p>
+          </div>
+          <div class="ingredient reveal">
+            <div class="ingredient__img">
+              <!-- REPLACE with vitamin c / citrus photo -->
+              <img src="image/citrus.jpg" alt="Vitamin C" />
+            </div>
+            <div class="ingredient__name">Vitamin C Complex</div>
+            <div class="ingredient__tag">Evens Skin Tone</div>
+            <p class="ingredient__desc">Brightens uneven skin tone and supports your skin's natural repair. Results build week by week.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ FAQ ════════════ -->
+    <section class="section faq">
+      <div class="container">
+        <div class="faq__inner">
+          <div style="text-align:center;margin-bottom:clamp(2.5rem,5vw,3.5rem);" class="reveal">
+            <div class="divider divider--center">
+              <div class="divider__line"></div>
+              <span class="eyebrow">Your Questions</span>
+              <div class="divider__line"></div>
+            </div>
+            <h2>We Know What<br/>You Are Thinking</h2>
+          </div>
+
+          <div class="reveal">
+            <div class="obj-item">
+              <button class="obj-btn" aria-expanded="false">
+                <span class="obj-q">I have tried serums before and nothing worked. Why is Anna different?</span>
+                <span class="obj-icon">+</span>
+              </button>
+              <div class="obj-body">
+                <p>Most serums are not made with dark skin as the starting point. Anna was built from scratch around the specific concerns of dark Nigerian skin. That is a different product entirely.</p>
+              </div>
+            </div>
+            <div class="obj-item">
+              <button class="obj-btn" aria-expanded="false">
+                <span class="obj-q">Will it make my skin purge or react badly?</span>
+                <span class="obj-icon">+</span>
+              </button>
+              <div class="obj-body">
+                <p>Anna contains no harsh chemicals, parabens or artificial fragrance. The ingredients are gentle enough for sensitive skin. We recommend a patch test first if your skin reacts easily.</p>
+              </div>
+            </div>
+            <div class="obj-item">
+              <button class="obj-btn" aria-expanded="false">
+                <span class="obj-q">How long before I see results?</span>
+                <span class="obj-icon">+</span>
+              </button>
+              <div class="obj-body">
+                <p>Better hydration in the first week. Acne reduction in weeks two and three. Visible dark spot fading takes four to six weeks of consistent use.</p>
+              </div>
+            </div>
+            <div class="obj-item">
+              <button class="obj-btn" aria-expanded="false">
+                <span class="obj-q">Is it worth the price?</span>
+                <span class="obj-icon">+</span>
+              </button>
+              <div class="obj-body">
+                <p>Add up what you have spent on products that did not work. Anna costs less than most of them combined. If it delivers what it promises, the question answers itself.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ CTA — WITH BACKGROUND IMAGE ════════════ -->
+    <section class="section cta-section" id="order">
+      <div class="cta-section__bg">
+        <!-- REPLACE with lifestyle/product photo -->
+        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1920&q=80" alt="" />
+        <div class="cta-section__bg-overlay"></div>
+      </div>
+      <div class="container">
+        <div class="cta-section__inner">
+          <div class="divider divider--center reveal">
+            <div class="divider__line" style="background:var(--sage);opacity:0.4;"></div>
+            <span class="eyebrow">Ready</span>
+            <div class="divider__line" style="background:var(--sage);opacity:0.4;"></div>
+          </div>
+          <h2 class="reveal">Your Skin Has Been<br/>Patient Enough</h2>
+          <p class="cta-section__sub reveal">
+            Order today and your serum ships within 24 hours. Delivered across Nigeria.
+          </p>
+          <div class="cta-section__actions reveal">
+            <a href="https://wa.me/2349000000000" class="btn btn-white btn-lg">
+              Order on WhatsApp
+              <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="mailto:hello@annaskincare.ng" class="btn btn-outline" style="border-color:rgba(255,255,255,0.25)!important;color:rgba(255,255,255,0.65);">
+              Send an Email
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__logo">ANNA<span>.</span></div>
+      <p class="footer__copy">&copy; <span id="year"></span> Anna Skincare Nigeria.</p>
+      <nav class="footer__links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" aria-label="Back to top">
+    <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+      <path d="M7.5 12V3M3 7l4.5-4.5L12 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const nav = document.getElementById('nav');
+    const scBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+      scBtn.classList.toggle('visible', window.scrollY > 500);
+    }, { passive: true });
+
+    scBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Mobile menu
+    const ham = document.getElementById('ham');
+    const mob = document.getElementById('mobMenu');
+    let menuOpen = false;
+    function setMenu(s) {
+      menuOpen = s;
+      ham.classList.toggle('open', s);
+      mob.classList.toggle('open', s);
+      ham.setAttribute('aria-expanded', s);
+      document.body.style.overflow = s ? 'hidden' : '';
+    }
+    ham.addEventListener('click', () => setMenu(!menuOpen));
+    document.querySelectorAll('.mob-link').forEach(el => el.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+    // Reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => obs.observe(el));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href === '#') return;
+        const t = document.querySelector(href);
+        if (!t) return;
+        e.preventDefault();
+        window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+      });
+    });
+
+    // FAQ
+    document.querySelectorAll('.obj-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const item = this.closest('.obj-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.obj-item.open').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.obj-btn').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
